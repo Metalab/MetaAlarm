@@ -1,0 +1,2 @@
+This is from https://www.xehonk.de/projects/usbrelay.php
+License: GPL 3+ Henning Rohlfs
