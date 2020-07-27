@@ -21,6 +21,16 @@ for sms in $(ls -1); do
 
   blink &
 
+  text="${text//ü/ue}"
+  text="${text//ö/oe}"
+  text="${text//ä/ae}"
+
+  text="${text//Ü/Ue}"
+  text="${text//Ö/Oe}"
+  text="${text//Ä/Ae}"
+
+  text="${text//ß/ss}"
+
   echo -e "$(date +"%d.%m.%Y %H:%M") : +${from} : ${text}\r\n:" | sudo tee /dev/usb/lp0
 
   rm $sms
