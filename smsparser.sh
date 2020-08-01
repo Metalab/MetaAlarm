@@ -21,6 +21,7 @@ for sms in $(ls -1); do
 
   blink &
 
+  # Replace Umlauts and ß
   text="${text//ü/ue}"
   text="${text//ö/oe}"
   text="${text//ä/ae}"
@@ -30,6 +31,9 @@ for sms in $(ls -1); do
   text="${text//Ä/Ae}"
 
   text="${text//ß/ss}"
+
+  # Cut off the text after 50 characters
+  text=$(echo $text | cut -c-50)
 
   echo -e "$(date +"%d.%m.%Y %H:%M") : +${from} : ${text}\r\n:" | sudo tee /dev/usb/lp0
 
