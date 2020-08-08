@@ -13,6 +13,10 @@ blink () {
   sudo ./usb-relay > /dev/null 2>&1
 }
 
+alarm () {
+  aplay -Ddefault:CARD=U0x41e0x30d3 /home/spfeifer/projects/metaalarm/alarm.wav
+}
+
 cd /var/spool/sms/incoming
 
 for sms in $(ls -1); do
@@ -20,6 +24,7 @@ for sms in $(ls -1); do
   text=$(formail -I "" < $sms | sed -e"1d")
 
   blink &
+  alarm &
 
   # Replace Umlauts and ß
   text="${text//ü/ue}"
